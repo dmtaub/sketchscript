@@ -31,9 +31,10 @@ which will be used to run a local web server.
 
 Node/npm requires a `package.json` file, and we create and save ours right here!
 
-The sequence `(->` begins a closure, or nameless function:
+Lets create a function called `runme`. Everything indented after the arrow `->`
+is part of this function:
 
-    (->
+    runme = ->
       exports.package =
         name: 'sketchscript'
         version: '1.0.0'
@@ -44,36 +45,37 @@ The sequence `(->` begins a closure, or nameless function:
         scripts: arguments[0]   # first element of the special 'arguments' list
         devDependencies: devDependencies   # this was defined on line 12, above
 
-The scripts section will br defined in a separate file, `tools/scripts`.
+    # de-indenting here says we're done writing the 'runme' function
 
 ### A note on modules and functions
 
 The word 'exports' above lets us treat this file as a _module_ that can be used
 to get the data and code here in another document.
 
-Now, from another file, we can do ` readme = require './README.litcoffee' ` to
-get a `readme` object with a `package` property, accessible as `readme.package`.
+From another file, we can do ` readme = require './README.litcoffee' ` to create
+a `readme` object with a `package` property, accessible as `readme.package`.
 
-Until we run this closure, `exports.package` will not exist.  We can run the
-nameless function with parentheses() to call it. We can also name functions and
-run them that way: `run = -> ...what to do...`, then `do run` or `run(args)`.
+Let's do something similar right now to pull in scripts for our package.json:
 
-### Finishing the export definition
+    scripts = require('./tools/scripts.litcoffee')
 
-We will finish our closure with an de-indented second parenthesis `)` and run it
-with `()`. Since we referenced the script section before as `arguments[0]` we
-need 'scripts' to be _passed in_ as the first argument to this function _call_:
+### Calling the function
 
-    )( require('./tools/scripts.litcoffee') )
+Until we _execute_ `runme()`, `exports.package` does not exist.  We can do this
+now, with or without parentheses, making sure to _pass in_ the scripts as the
+first _argument_ to this function _call_:
 
-In this case, we get the scripts from another file, using `require`.
+    runme(scripts)
+
+NOTE: We could also have used _implicit parentheses_. e.g. `runme scripts`
 
 ### Formatting data as a text string
 
-Now that we have all the data, we call the node JSON object's stringify method
-to turn it into a list of characters called a _string_:
+Now that we have all the data stored in `exports.package`, let's make it into a
+_string_ of characters using the build-in `JSON` object's `stringify` method:
 
-    print 'Serializing package information to pretty-printed json'
+    print 'serializing package information to pretty-printed json...'
+
     formattedJSON = JSON.stringify(exports.package, null, '  ')
 
 The second argument is `null` to indicate that we want to include all
@@ -84,11 +86,11 @@ properties, rather than just some, in our output text.
 In order for us to use our package.json, we first must save this file using
 node's core `fs` library:
 
-    print 'writing to disk'
+    print 'writing to disk...'
 
     fs = require('fs')
     fs.writeFileSync('package.json', formattedJSON)
 
-    print 'ready to use npm commands!'
+    print '...ready to use npm commands!'
 
 If you haven't already, now may be a good time to run this file with `cake bake`
