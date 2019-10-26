@@ -6,9 +6,10 @@ export things we need for package.json, but have it runnable for cake scripts
 The preinstall script ensures we update package.json before `npm install`ing.
 
       preinstall: 'coffee README.litcoffee'            # please don't change me!
-      postinstall: 'ls'
+      postinstall: 'echo Done with \'npm install\''
 
 These lines are only used for development of this project itself:
 
       start: 'brunch watch --server'
       test: 'coffee tools/test.litcoffee'
+      clean: 'rm -rf node_modules && rm package.json'

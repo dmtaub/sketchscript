@@ -1,15 +1,16 @@
-# sketchscript: literate code for storytelling
+# SketchScript: Literate Code for Storytelling
 
 This file, and all other .litcoffee files in this repo, flip the idea of coding
 around. Instead of reading a code file with occasional comments for documenting,
 you are now reading an English document with occasional code. Sections set apart
- after ablank line and indented by four or more spaces will run as code:
+after a blank line and indented by four or more spaces will be run:
 
-    console.log('Running README...')
+    print = console.log                  # alias the output function for clarity
+    print 'Running README...'
 
-    # However, anything after a hashtag is ignored, even if set off & indented.
-    #
-    # console.log("This won't appear when running README.litcoffee")
+However, anything after a hashtag is ignored, even if set off & indented.
+
+    # print "This won't appear when running README.litcoffee
 
 ## SketchScript Bootstrapping
 
@@ -74,6 +75,7 @@ In this case, we get the scripts from another file, using `require`.
 Now that we have all the data, we call the node JSON object's stringify method
 to turn it into a list of characters called a _string_:
 
+    print 'Serializing package information to pretty-printed json'
     formattedJSON = JSON.stringify(exports.package, null, '  ')
 
 The second argument is `null` to indicate that we want to include all
@@ -81,20 +83,14 @@ properties, rather than just some, in our output text.
 
 ### Writing package.json
 
-In order for us to use our package.json, we first must save a file to disk using
+In order for us to use our package.json, we first must save this file using
 node's core `fs` library:
+
+    print 'writing to disk'
 
     fs = require('fs')
     fs.writeFileSync('package.json', formattedJSON)
 
-    console.log('ready to use npm commands!')
+    print 'ready to use npm commands!'
 
-
-## Build System
-
-We're using coffeescript's built-in cake task runner.
-Running another closure, with coffeescrips 'do' this time
-
-do ->
-  await fs.writefile
-  clean: 'rm -rf node_modules && rm package.json'
+If you haven't already, now may be a good time to run this file with `cake bake`
