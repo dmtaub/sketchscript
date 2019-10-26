@@ -17,7 +17,7 @@ However, anything after a hashtag is ignored, even if set off & indented.
 Lets assumes you already have node, npm, and coffeescript.
 If you don't have `coffee` or `cake` commands, do `npm install -g coffeescript`.
 
-Then `coffee README.litcoffee` or `cake bootstrap` will set up the node package!
+Then `coffee README.litcoffee` or `cake bake` will set up the node package!
 
 After that, if you'd like to work on this projects itself, use `npm install` for
 
