@@ -74,7 +74,7 @@ NOTE: We could also have used _implicit parentheses_. e.g. `runme scripts`
 Now that we have all the data stored in `exports.package`, let's make it into a
 _string_ of characters using the build-in `JSON` object's `stringify` method:
 
-    print '...serializing package information to pretty-printed json...'
+    print '...serializing to pretty-printed json...'
 
     formattedJSON = JSON.stringify(exports.package, null, '  ')
 
