@@ -1,9 +1,9 @@
 # SketchScript: Literate Code for Storytelling
 
 This file, and all other .litcoffee files in this repo, flip the idea of coding
-around. Instead of reading a code file with occasional comments for documenting,
-you are now reading an English document with occasional code. Sections set apart
-after a blank line and indented by four or more spaces will be run:
+around. Instead of reading a code file with readable comments for documentation,
+you are now reading an English document with runnable code blocks. Sections set
+apart after a blank line and indented by four or more spaces will be executed:
 
     print = console.log                  # alias the output function for clarity
     print 'Running README...'
@@ -14,24 +14,22 @@ However, anything after a hashtag is ignored, even if set off & indented.
 
 ## SketchScript Bootstrapping
 
-Lets assumes you already have node, npm, and coffeescript.
+Let's assumes you already have node, npm, and coffeescript.
 If you don't have `coffee` or `cake` commands, do `npm install -g coffeescript`.
 
 Then `coffee README.litcoffee` or `cake bake` will set up the node package!
 
-After that, if you'd like to work on this projects itself, use `npm install` for
+After that, if you'd like to work on this project itself, use `npm install` for
 
     devDependencies =
       brunch: '2.10.17'
       'coffee-script-brunch': '3.0.0'
 
-which will be used to run a local web server
+which will be used to run a local web server.
 
 ### Our package definition
 
-Node/npm uses a `pacakge.json` file, and we will be creating ours right here.
-
-We will also talk you through some basic coffeescript concepts.
+Node/npm requires a `package.json` file, and we create and save ours right here!
 
 The sequence `(->` begins a closure, or nameless function:
 
