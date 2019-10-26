@@ -1,9 +1,9 @@
 # sketchscript: literate code for storytelling
 
 This file, and all other .litcoffee files in this repo, flip the idea of coding
-around. Instead of reading a code document with occasional comments, you are now
-reading a comment document with occasional code. Sections set apart after a
-blank line and indented by four or more spaces will run as code:
+around. Instead of reading a code file with occasional comments for documenting,
+you are now reading an English document with occasional code. Sections set apart
+ after ablank line and indented by four or more spaces will run as code:
 
     console.log('Running README...')
 
@@ -24,12 +24,15 @@ After that, if you'd like to work on this projects itself, use `npm install` for
       brunch: '2.10.17'
       'coffee-script-brunch': '3.0.0'
 
+which will be used to run a local web server
+
 ### Our package definition
 
-Node/npm uses a `pacakge.json` file, and we be creating ours here.
+Node/npm uses a `pacakge.json` file, and we will be creating ours right here.
+
 We will also talk you through some basic coffeescript concepts.
 
-The sequence `(->` begins a closure, or nameless function, for us to run later:
+The sequence `(->` begins a closure, or nameless function:
 
     (->
       exports.package =
@@ -42,7 +45,7 @@ The sequence `(->` begins a closure, or nameless function, for us to run later:
         scripts: arguments[0]   # first element of the special 'arguments' list
         devDependencies: devDependencies   # this was defined on line 12, above
 
-Note that the scripts are defined in a separate file, `tools/scripts`.
+The scripts section will br defined in a separate file, `tools/scripts`.
 
 ### A note on modules and functions
 
@@ -58,19 +61,23 @@ run them that way: `run = -> ...what to do...`, then `do run` or `run(args)`.
 
 ### Finishing the export definition
 
-We will end our closure with a second parenthesis `)` then run it with `()`.
-Since we referenced the script section before as `arguments[0]` we need the
-scripts to be _passed in_ as the first argument to the function _call_.
+We will finish our closure with an de-indented second parenthesis `)` and run it
+with `()`. Since we referenced the script section before as `arguments[0]` we
+need 'scripts' to be _passed in_ as the first argument to this function _call_:
 
     )( require('./tools/scripts.litcoffee') )
 
 In this case, we get the scripts from another file, using `require`.
 
-Now that we have all the data, we use node's built-in JSON object to string-ify.
+### Formatting data as a text string
+
+Now that we have all the data, we call the node JSON object's stringify method
+to turn it into a list of characters called a _string_:
 
     formattedJSON = JSON.stringify(exports.package, null, '  ')
 
-The `null` indicates that we want to take all properties, rather than just some.
+The second argument is `null` to indicate that we want to include all
+properties, rather than just some, in our output text.
 
 ### Writing package.json
 
