@@ -38,7 +38,7 @@ The sequence `(->` begins a closure, or nameless function, for us to run later:
         description: 'literate programming playground'
         main: 'README.litcoffee'
         author: 'mdan'
-        license: 'AGPL'
+        license: 'AGPL-3.0'
         scripts: arguments[0]   # first element of the special 'arguments' list
         devDependencies: devDependencies   # this was defined on line 12, above
 
