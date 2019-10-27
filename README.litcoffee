@@ -14,8 +14,8 @@ However, anything after a hashtag is ignored, even if set apart and indented.
 
 ## SketchScript Bootstrapping
 
-Let's assumes you already have node, npm, and coffeescript.
-If you don't have `coffee` or `cake` commands, do `npm install -g coffeescript`.
+You will need [node, npm](https://nodejs.org/en/download/), and coffeescript.
+Once you have node, do `npm install -g coffeescript` to get `coffee` and `cake`.
 Then, `coffee README.litcoffee` or `cake bake` will set up the node package!
 
 After this setup, `npm install` will always run this file first. To use the
