@@ -8,7 +8,7 @@ apart after a blank line and indented by four or more spaces will be executed:
     print = console.log                  # alias the output function for clarity
     print 'Running README...'
 
-However, anything after a hashtag is ignored, even if set off and indented.
+However, anything after a hashtag is ignored, even if set apart and indented.
 
     # print "This won't appear when running README.litcoffee"
 
