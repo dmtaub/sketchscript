@@ -1,38 +1,38 @@
 # SketchScript: Literate Code for Storytelling
 
 This file, and all other .litcoffee files in this repo, flip the idea of coding
-around. Instead of reading a code file with readable comments for documentation,
+around. Instead of seeing a code file with readable comments for documentation,
 you are now reading an English document with runnable code blocks. Sections set
 apart after a blank line and indented by four or more spaces will be executed:
 
     print = console.log                  # alias the output function for clarity
     print 'Running README...'
 
-However, anything after a hashtag is ignored, even if set off & indented.
+However, anything after a hashtag is ignored, even if set off and indented.
 
-    # print "This won't appear when running README.litcoffee
+    # print "This won't appear when running README.litcoffee"
 
 ## SketchScript Bootstrapping
 
 Let's assumes you already have node, npm, and coffeescript.
 If you don't have `coffee` or `cake` commands, do `npm install -g coffeescript`.
+Then, `coffee README.litcoffee` or `cake bake` will set up the node package!
 
-Then `coffee README.litcoffee` or `cake bake` will set up the node package!
-
-After that, if you'd like to work on this project itself, use `npm install` for
+After this setup, `npm install` will always run this file first. To use the
+development server, run `npm install` now. This will download
 
     devDependencies =
       brunch: '2.10.17'
       'coffee-script-brunch': '3.0.0'
 
-which will be used to run a local web server.
+that can be used to run the local web server.
 
 ### Our package definition
 
 Node/npm requires a `package.json` file, and we create and save ours right here!
 
 Lets create a function called `runme`. Everything indented after the arrow `->`
-is part of this function:
+is part of this new function, assigned to the _variable_ `runme`:
 
     runme = ->
       exports.package =
@@ -42,7 +42,7 @@ is part of this function:
         main: 'README.litcoffee'
         author: 'mdan'
         license: 'AGPL-3.0'
-        scripts: arguments[0]   # first element of the special 'arguments' list
+        scripts: arguments[0]              # this will be passed in when run
         devDependencies: devDependencies   # this was defined on line 12, above
 
     # de-indenting here says we're done writing the 'runme' function
@@ -50,24 +50,32 @@ is part of this function:
 ### A note on modules and functions
 
 The word 'exports' above lets us treat this file as a _module_ that can be used
-to get the data and code here in another document.
+to get the data and code that is in this file from another document.
 
-From another file, we can do ` readme = require './README.litcoffee' ` to create
-a `readme` object with a `package` property, accessible as `readme.package`.
+We have alreday done this in another file (`scripts.litcoffee` in the `tools`
+directory) so that we can assign a variable here to reference the data there:
 
-Let's do something similar right now to pull in scripts for our package.json:
+    scripts = require './tools/scripts.litcoffee'
 
-    scripts = require('./tools/scripts.litcoffee')
+Now, `scripts` contains the information that is in the `scripts.litcoffee` file.
 
 ### Calling the function
 
-Until we _execute_ `runme()`, `exports.package` does not exist.  We can do this
-now, with or without parentheses, making sure to _pass in_ the scripts as the
-first _argument_ to this function _call_:
+Until we _execute_ `runme()`, `exports.package` **does not exist**.
 
-    runme(scripts)
+Let's execute it now, making sure to send, or _pass in_, our `scripts` varible
+as the first _argument_ to the function _call_.
 
-NOTE: We could also have used _implicit parentheses_. e.g. `runme scripts`
+    runme scripts
+
+#### NOTES
+* It would also work with _explicit parentheses_, as `runme(scripts)`. This is
+often helpful for spreading a function call over multiple lines of code.
+* Inside the function, the special `arguments` array will have the data from
+`scripts` in _array index 0_. We can access this data with square brackets:
+`arguments[0]`.
+* We wouldn't have to use the `arguments` array if we defined the function with
+a name to call this argument, for example, with `runme = (scriptSection) ->`
 
 ### Formatting data as a text string
 
@@ -83,8 +91,8 @@ properties, rather than just some, in our output text.
 
 ### Writing package.json
 
-In order for us to use our package.json, we first must save this file using
-node's core `fs` library:
+In order for us to use our package.json, we must save this file using node's
+core `fs` library:
 
     print '...writing to disk...'
 
