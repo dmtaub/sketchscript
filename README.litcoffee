@@ -58,7 +58,7 @@ directory) so that we can assign a variable here to reference the data there:
 
     scripts = require './tools/scripts.litcoffee'
 
-Now, `scripts` contains the information that is in the `scripts.litcoffee` file.
+Now, `scripts` contains all the exported code from the `scripts.litcoffee` file.
 
 ### Calling the function
 
