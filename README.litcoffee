@@ -18,21 +18,22 @@ You will need [node, npm](https://nodejs.org/en/download/), and coffeescript.
 Once you have node, do `npm install -g coffeescript` to get `coffee` and `cake`.
 Then, `coffee README.litcoffee` or `cake bake` will set up the node package!
 
-After this setup, `npm install` will always run this file first. To use the
-development server, run `npm install` now. This will download
+To use the development server, you can run `npm install` now. This will download
 
     devDependencies =
       brunch: '2.10.17'
       'coffee-script-brunch': '3.0.0'
 
-that can be used to run the local web server.
+that can be used to host a local web server.
 
 ### Our package definition
 
 Node/npm requires a `package.json` file, and we create and save ours right here!
 
-Lets create a function called `runme`. Everything indented after the arrow `->`
-is part of this new function, assigned to the _variable_ `runme`:
+Lets create a function called `runme`.
+
+Everything indented after the arrow `->` will be part of this new function that
+we are assigning to a _variable_ called `runme`:
 
     runme = ->
       exports.package =

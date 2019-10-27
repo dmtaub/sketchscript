@@ -3,7 +3,7 @@ export things we need for package.json, but have it runnable for cake scripts
 
     module.exports =
 
-The preinstall script ensures we update package.json before `npm install`ing.
+The preinstall script ensures we recreate package.json before `npm install`ing.
 
       preinstall: 'coffee README.litcoffee'            # please don't change me!
       postinstall: 'echo Done with \'npm install\''
